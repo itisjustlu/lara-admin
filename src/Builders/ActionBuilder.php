@@ -3,8 +3,9 @@
 namespace LucasRuroken\Backoffice\Builders;
 
 use Illuminate\Support\Collection;
+use LucasRuroken\Backoffice\Builders\Contracts\ActionBuilderInterface;
 
-class ActionBuilder
+class ActionBuilder implements ActionBuilderInterface
 {
     /**
      * @type Collection

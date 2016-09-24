@@ -3,8 +3,9 @@
 namespace LucasRuroken\Backoffice\Builders;
 
 use Illuminate\Support\Collection;
+use LucasRuroken\Backoffice\Builders\Contracts\ActionInterface;
 
-class Action
+class Action implements ActionInterface
 {
     /**
      * @type bool
@@ -326,6 +327,9 @@ class Action
         return $this->extras;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
         if(!$this->isEnabled())
