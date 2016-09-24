@@ -101,7 +101,18 @@ class ActionTest extends TestCase
         $this->assertTrue($actionBuilder->getActions()->first()->getClass() ? false : true);
     }
 
-    public function testSimpleLinkReturned()
+    public function testOutputSimpleLink()
+    {
+        $actionBuilder = new ActionBuilder();
+        $actionBuilder->build()
+            ->setLink('/my-profile')
+            ->setLabeled('Texter');
+
+        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_link_returned.html'));
+        print($actionBuilder->getActions()->first());
+    }
+
+    public function testOutputLink()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -115,11 +126,11 @@ class ActionTest extends TestCase
             ->add('title', 'Extend Title')
             ->asLink();
 
-        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_link_returned.html'));
+        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_link_returned.html'));
         print($actionBuilder->getActions()->first());
     }
 
-    public function testSimpleFormReturned()
+    public function testOutputForm()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -134,7 +145,7 @@ class ActionTest extends TestCase
             ->setCsrfField('<input type="hidden" name="_token" value="123" />')
             ->asForm();
 
-        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_form_returned.html'));
+        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_form_returned.html'));
         print($actionBuilder->getActions()->first());
     }
 }
