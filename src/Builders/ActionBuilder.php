@@ -48,7 +48,7 @@ class ActionBuilder implements ActionBuilderInterface
 
         foreach($this->actions AS $action)
         {
-            $toString .= $action->__toString();
+            $toString .= $action;
         }
 
         return $toString;

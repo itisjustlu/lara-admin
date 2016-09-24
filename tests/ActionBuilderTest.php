@@ -44,9 +44,7 @@ class ActionBuilderTest extends TestCase
             ->setCsrfField('<input type="hidden" name="_token" value="123" />')
             ->asForm();
 
-        $this->assertEquals(
-            file_get_contents(__DIR__ . '/html/test_simple_link_returned.html') . file_get_contents(__DIR__ . '/html/test_simple_form_returned.html'),
-            $actionBuilder->__toString()
-        );
+        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_link_returned.html') . file_get_contents(__DIR__ . '/html/test_simple_form_returned.html'));
+        print($actionBuilder);
     }
 }

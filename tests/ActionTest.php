@@ -115,7 +115,8 @@ class ActionTest extends TestCase
             ->add('title', 'Extend Title')
             ->asLink();
 
-        $this->assertEquals(file_get_contents(__DIR__ . '/html/test_simple_link_returned.html'), $actionBuilder->getActions()->first()->__toString());
+        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_link_returned.html'));
+        print($actionBuilder->getActions()->first());
     }
 
     public function testSimpleFormReturned()
@@ -133,6 +134,7 @@ class ActionTest extends TestCase
             ->setCsrfField('<input type="hidden" name="_token" value="123" />')
             ->asForm();
 
-        $this->assertEquals(file_get_contents(__DIR__ . '/html/test_simple_form_returned.html'), $actionBuilder->getActions()->first()->__toString());
+        $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_form_returned.html'));
+        print($actionBuilder->getActions()->first());
     }
 }
