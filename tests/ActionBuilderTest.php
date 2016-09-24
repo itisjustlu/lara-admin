@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class ActionBuilderTest extends TestCase
 {
-    public function testSetNewAction()
+    public function testInstanceOfNewAction()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build();
@@ -18,7 +18,7 @@ class ActionBuilderTest extends TestCase
         $this->assertInstanceOf(Action::class, $actionBuilder->getActions()->first());
     }
 
-    public function testPrintActions()
+    public function testBuildedActions()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()

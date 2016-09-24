@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ActionTest extends TestCase
 {
-    public function testNewAction()
+    public function testNewActions()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder
@@ -33,24 +33,27 @@ class ActionTest extends TestCase
             ->add('title', 'Extend Title')
             ->asLink();
 
-        $this->assertEquals('/mi-link', $actionBuilder->getActions()->first()->getLink());
-        $this->assertEquals('custom-class', $actionBuilder->getActions()->first()->getClass());
-        $this->assertEquals('top', $actionBuilder->getActions()->first()->getDataPlacement());
-        $this->assertEquals('tooltip', $actionBuilder->getActions()->first()->getDataToggle());
-        $this->assertEquals('Title', $actionBuilder->getActions()->first()->getTitle());
-        $this->assertEquals('icon-fa', $actionBuilder->getActions()->first()->getLabeled());
-        $this->assertEquals('PATCH', $actionBuilder->getActions()->first()->getMethod());
-        $this->assertTrue($actionBuilder->getActions()->first()->isForm());
-        $this->assertFalse($actionBuilder->getActions()->first()->isLink());
+        $actionFirst = $actionBuilder->getActions()->first();
+        $actionLast = $actionBuilder->getActions()->last();
 
-        $this->assertEquals('/mi-link-2', $actionBuilder->getActions()->last()->getLink());
-        $this->assertEquals('custom-class-2 custom-class', $actionBuilder->getActions()->last()->getClass());
-        $this->assertEquals('bottom', $actionBuilder->getActions()->last()->getDataPlacement());
-        $this->assertEquals('tooltip', $actionBuilder->getActions()->last()->getDataToggle());
-        $this->assertEquals('Title 2 Extend Title', $actionBuilder->getActions()->last()->getTitle());
-        $this->assertEquals('icon-fa-2', $actionBuilder->getActions()->last()->getLabeled());
-        $this->assertFalse($actionBuilder->getActions()->last()->isForm());
-        $this->assertTrue($actionBuilder->getActions()->last()->isLink());
+        $this->assertEquals('/mi-link', $actionFirst->getLink());
+        $this->assertEquals('custom-class', $actionFirst->getClass());
+        $this->assertEquals('top', $actionFirst->getDataPlacement());
+        $this->assertEquals('tooltip', $actionFirst->getDataToggle());
+        $this->assertEquals('Title', $actionFirst->getTitle());
+        $this->assertEquals('icon-fa', $actionFirst->getLabeled());
+        $this->assertEquals('PATCH', $actionFirst->getMethod());
+        $this->assertTrue($actionFirst->isForm());
+        $this->assertFalse($actionFirst->isLink());
+
+        $this->assertEquals('/mi-link-2', $actionLast->getLink());
+        $this->assertEquals('custom-class-2 custom-class', $actionLast->getClass());
+        $this->assertEquals('bottom', $actionLast->getDataPlacement());
+        $this->assertEquals('tooltip', $actionLast->getDataToggle());
+        $this->assertEquals('Title 2 Extend Title', $actionLast->getTitle());
+        $this->assertEquals('icon-fa-2', $actionLast->getLabeled());
+        $this->assertFalse($actionLast->isForm());
+        $this->assertTrue($actionLast->isLink());
     }
 
     public function testCallableLinkFalseReturn()
@@ -92,11 +95,7 @@ class ActionTest extends TestCase
     public function testNullableGetClass()
     {
         $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
-            ->setLink(function(){
-
-                return '/mi-link';
-            });
+        $actionBuilder->build();
 
         $this->assertNull($actionBuilder->getActions()->first()->getClass());
         $this->assertTrue($actionBuilder->getActions()->first()->getClass() ? false : true);
