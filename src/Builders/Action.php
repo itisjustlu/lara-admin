@@ -57,6 +57,11 @@ class Action
     private $asLink;
 
     /**
+     * @type string
+     */
+    private $csrfField;
+
+    /**
      * @type Collection
      */
     private $extras;
@@ -295,6 +300,25 @@ class Action
     }
 
     /**
+     * @return mixed
+     */
+    public function getCsrfField()
+    {
+        return $this->csrfField;
+    }
+
+    /**
+     * @param mixed $csrfField
+     * @return Action
+     */
+    public function setCsrfField($csrfField)
+    {
+        $this->csrfField = $csrfField;
+
+        return $this;
+    }
+
+    /**
      * @return Collection
      */
     public function getExtras()
@@ -310,31 +334,51 @@ class Action
         }
 
         $attributes = [];
-        $toString = '';
 
         if($this->getClass())
         {
-            $attributes['class'] = $this->getClass();
+            $attributes[] = 'class="' . $this->getClass() . '"';
         }
 
         if($this->getTitle())
         {
-            $attributes['title'] = $this->getTitle();
+            $attributes[] = 'title="' . $this->getTitle() . '"';
         }
 
         if($this->getDataPlacement())
         {
-            $attributes['data-placement'] = $this->getDataPlacement();
+            $attributes[] = 'data-placement="' . $this->getDataPlacement() . '"';
         }
 
         if($this->getDataToggle())
         {
-            $attributes['data-toggle'] = $this->getDataToggle();
+            $attributes[] = 'data-toggle="' . $this->getDataToggle() . '"';
         }
 
         foreach($this->getExtras() AS $key => $value)
         {
-            $attributes[$key] = $value;
+            $attributes[] = $key . '="' . $value . '"';
         }
+
+        if($this->isLink())
+        {
+            $toString = '<a href="' . $this->getLink() . '" '. implode(' ', $attributes) . '>';
+            $toString .= $this->getLabeled();
+            $toString .= '</a>';
+        }
+        else
+        {
+            $toString = '<form action="' . $this->getLink() . '" method="' . $this->getMethod() . '">';
+
+            if($this->getCsrfField())
+            {
+                $toString .= $this->getCsrfField();
+            }
+
+            $toString .= '<button type="submit" '. implode(' ', $attributes) . '>' . $this->getLabeled() . '</button>';
+            $toString .= '</form>';
+        }
+
+        return $toString;
     }
 }

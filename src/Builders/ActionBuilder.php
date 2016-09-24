@@ -37,4 +37,19 @@ class ActionBuilder
     {
         return $this->actions;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        $toString = '';
+
+        foreach($this->actions AS $action)
+        {
+            $toString .= $action->__toString();
+        }
+
+        return $toString;
+    }
 }
