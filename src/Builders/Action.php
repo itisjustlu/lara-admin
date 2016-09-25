@@ -379,6 +379,13 @@ class Action implements ActionInterface
                 $toString .= $this->getCsrfField();
             }
 
+            // If csrfField is not given, It will search
+            // in the helpers library if the csrf_field function exists
+            if(!$this->getCsrfField() && function_exists('csrf_field'))
+            {
+                $toString .= csrf_field();
+            }
+
             $toString .= '<button type="submit" '. implode(' ', $attributes) . '>' . $this->getLabeled() . '</button>';
             $toString .= '</form>';
         }

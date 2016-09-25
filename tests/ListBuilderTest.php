@@ -11,6 +11,7 @@ class ListBuilderTest extends TestCase
 {
     /** @type ActionBuilder */
     private $actionBuilder;
+
     /** @type ListBuilder */
     private $listBuilder;
 
