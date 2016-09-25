@@ -2,7 +2,7 @@
 
 namespace LucasRuroken\Backoffice\Builders\Contracts;
 
-use Illuminate\Database\Eloquent\Collection AS EloquentCollection;
+use Illuminate\Support\Collection;
 use LucasRuroken\Backoffice\Builders\ActionBuilder;
 
 interface ListBuilderInterface
@@ -23,9 +23,9 @@ interface ListBuilderInterface
     public function setActionBuilder(ActionBuilder $actionBuilder);
 
     /**
-     * @param EloquentCollection $information
+     * @param Collection $information
      */
-    public function fillInformation(EloquentCollection $information);
+    public function fillInformation(Collection $information);
 
     /**
      * @return string

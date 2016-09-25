@@ -3,7 +3,6 @@
 namespace LucasRuroken\Backoffice\Builders;
 
 use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Collection AS EloquentCollection;
 use LucasRuroken\Backoffice\Builders\Contracts\ListBuilderInterface;
 
 class ListBuilder implements ListBuilderInterface
@@ -24,7 +23,7 @@ class ListBuilder implements ListBuilderInterface
     private $actionBuilder;
 
     /**
-     * @type EloquentCollection
+     * @type Collection
      */
     private $information;
 
@@ -53,9 +52,9 @@ class ListBuilder implements ListBuilderInterface
     }
 
     /**
-     * @param EloquentCollection $information
+     * @param Collection $information
      */
-    public function fillInformation(EloquentCollection $information)
+    public function fillInformation(Collection $information)
     {
         $this->information = $information;
     }
