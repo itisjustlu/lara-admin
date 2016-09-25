@@ -13,14 +13,34 @@ interface ListBuilderInterface
     public function buildColumns(array $columns);
 
     /**
+     * @return Collection
+     */
+    public function getColumns();
+
+    /**
      * @param array $hiddenColumns
      */
     public function hideColumns(array $hiddenColumns);
 
     /**
+     * @return Collection
+     */
+    public function getHiddenColumns();
+
+    /**
+     * @return Collection
+     */
+    public function visibleColumns();
+
+    /**
      * @param ActionBuilder $actionBuilder
      */
     public function setActionBuilder(ActionBuilder $actionBuilder);
+
+    /**
+     * @return ActionBuilder
+     */
+    public function getActionBuilder();
 
     /**
      * @param Collection $information
