@@ -2,13 +2,33 @@
 
 namespace LucasRuroken\Backoffice\Builders\Contracts;
 
+use Illuminate\Database\Eloquent\Collection AS EloquentCollection;
+use LucasRuroken\Backoffice\Builders\ActionBuilder;
+
 interface ListBuilderInterface
 {
-    public function buildColumns();
+    /**
+     * @param array $columns
+     */
+    public function buildColumns(array $columns);
 
-    public function hideColumns();
+    /**
+     * @param array $hiddenColumns
+     */
+    public function hideColumns(array $hiddenColumns);
 
-    public function setActions();
+    /**
+     * @param ActionBuilder $actionBuilder
+     */
+    public function setActionBuilder(ActionBuilder $actionBuilder);
 
-    public function fillInformation();
+    /**
+     * @param EloquentCollection $information
+     */
+    public function fillInformation(EloquentCollection $information);
+
+    /**
+     * @return string
+     */
+    public function __toString();
 }
