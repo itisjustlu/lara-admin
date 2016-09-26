@@ -86,6 +86,6 @@ class ListBuilderTest extends TestCase
 
         $this->listBuilder->fillBulkers($bulker);
 
-        $this->assertEquals('<span style="color: red;">Test name - Lucas</span>', $this->listBuilder->render()['bulker']->bulk('name', new Collection(['name' => 'Lucas'])));
+        $this->assertEquals('<span style="color: red;">Test name - Lucas</span>', $this->listBuilder->render()['bulker']->bulk('name', new Collection(['name' => 'Lucas']), 'Lucas'));
     }
 }
