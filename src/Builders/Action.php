@@ -3,11 +3,18 @@
 namespace LucasRuroken\Backoffice\Builders;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use LucasRuroken\Backoffice\Builders\Contracts\ActionInterface;
 
 class Action implements ActionInterface
 {
     const EMPTY_STRING = '';
+
+    /**
+     * Custom methods
+     * @var array
+     */
+    private $reflection = ['class', 'title', 'dataPlacement', 'dataToggle'];
 
     /**
      * @type bool
@@ -398,24 +405,14 @@ class Action implements ActionInterface
     {
         $attributes = [];
 
-        if($this->getClass())
+        foreach($this->reflection AS $attr)
         {
-            $attributes[] = 'class="' . $this->getClass() . '"';
-        }
+            $callable = 'get' . ucfirst($attr);
 
-        if($this->getTitle())
-        {
-            $attributes[] = 'title="' . $this->getTitle() . '"';
-        }
-
-        if($this->getDataPlacement())
-        {
-            $attributes[] = 'data-placement="' . $this->getDataPlacement() . '"';
-        }
-
-        if($this->getDataToggle())
-        {
-            $attributes[] = 'data-toggle="' . $this->getDataToggle() . '"';
+            if(method_exists(self::class, $callable) && $this->{$callable}())
+            {
+                $attributes[] = Str::snake($attr, '-') . '="'. $this->{$callable}() . '"';
+            }
         }
 
         foreach($this->getExtras() AS $key => $value)

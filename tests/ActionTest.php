@@ -148,4 +148,16 @@ class ActionTest extends TestCase
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_form_returned.html'));
         print($this->actionBuilder->getActions()->first());
     }
+
+    public function testSnake()
+    {
+        $reflection = 'class';
+
+        $this->assertTrue(method_exists(self::class, 'getClass'));
+    }
+
+    public function getClass()
+    {
+
+    }
 }
