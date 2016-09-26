@@ -28,6 +28,11 @@ class ListBuilder implements ListBuilderInterface
     private $columnTitles;
 
     /**
+     * @type Collection
+     */
+    private $bulkedColumns;
+
+    /**
      * @type ActionBuilder
      */
     private $actionBuilder;
@@ -41,6 +46,7 @@ class ListBuilder implements ListBuilderInterface
     {
         $this->columns = new Collection();
         $this->hiddenColumns = new Collection();
+        $this->bulkedColumns = new Collection();
     }
 
     /**
@@ -153,20 +159,12 @@ class ListBuilder implements ListBuilderInterface
     public function render()
     {
         return [
-            'name' => $this->getName(),
             'actions' => $this->getActionBuilder(),
-            'information' => $this->getInformation(),
             'columns' => $this->visibleColumns(),
             'fullColumns' => $this->getColumns(),
+            'information' => $this->getInformation(),
+            'name' => $this->getName(),
             'titles' => $this->getColumnTitles(),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return PHP_EOL;
     }
 }

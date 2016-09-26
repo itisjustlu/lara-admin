@@ -66,9 +66,22 @@ class ListBuilderTest extends TestCase
         $this->assertEquals('Titulo', $this->listBuilder->getColumnTitles()->get('title'));
     }
 
-    public function testName()
+    public function testNameIsRendered()
     {
         $this->listBuilder->setName('Articles');
         $this->assertEquals('Articles', $this->listBuilder->render()['name']);
+    }
+
+    public function testBulkedColumns()
+    {
+        $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
+        $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
+
+        $this->listBuilder->bulkColumn('name', function(Collection $row){
+
+            return '<span style="color: red;">Test name</span>';
+        });
+
+
     }
 }

@@ -76,9 +76,4 @@ interface ListBuilderInterface
      * @return array
      */
     public function render();
-
-    /**
-     * @return string
-     */
-    public function __toString();
 }
