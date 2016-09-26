@@ -9,19 +9,17 @@ use PHPUnit\Framework\TestCase;
 
 class ActionBuilderTest extends TestCase
 {
-    public function testInstanceOfNewAction()
-    {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build();
+    /** @type ActionBuilder */
+    private $actionBuilder;
 
-        $this->assertInstanceOf(Collection::class, $actionBuilder->getActions());
-        $this->assertInstanceOf(Action::class, $actionBuilder->getActions()->first());
+    public function setUp()
+    {
+        $this->actionBuilder = new ActionBuilder();
     }
 
     public function testBuildedActions()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink('/my-profile')
             ->setClass('custom-class-2')
             ->setDataPlacement('bottom')
@@ -32,7 +30,7 @@ class ActionBuilderTest extends TestCase
             ->add('title', 'Extend Title')
             ->asLink();
 
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink('/my-profile')
             ->setClass('custom-class-2')
             ->setDataPlacement('bottom')
@@ -45,13 +43,12 @@ class ActionBuilderTest extends TestCase
             ->asForm();
 
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_link_returned.html') . file_get_contents(__DIR__ . '/html/test_form_returned.html'));
-        print($actionBuilder);
+        print($this->actionBuilder);
     }
 
     public function testActionWithFalseLink()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink('/my-profile')
             ->setClass('custom-class-2')
             ->setDataPlacement('bottom')
@@ -62,7 +59,7 @@ class ActionBuilderTest extends TestCase
             ->add('title', 'Extend Title')
             ->asLink();
 
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink(function()
             {
                 return false;
@@ -70,6 +67,6 @@ class ActionBuilderTest extends TestCase
             ->setClass('custom-class-3');
 
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_link_returned.html'));
-        print($actionBuilder);
+        print($this->actionBuilder);
     }
 }
