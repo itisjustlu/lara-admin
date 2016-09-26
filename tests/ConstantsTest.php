@@ -10,5 +10,6 @@ class ConstantsTest extends TestCase
     public function testViews()
     {
         $this->assertEquals('backoffice', ViewConstants::BACKOFFICE);
+        $this->assertEquals('backoffice::lists', ViewConstants::BACKOFFICE_LIST);
     }
 }

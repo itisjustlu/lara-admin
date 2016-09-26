@@ -65,4 +65,10 @@ class ListBuilderTest extends TestCase
         $this->assertEquals('Nombre', $this->listBuilder->getColumnTitles()->get('name'));
         $this->assertEquals('Titulo', $this->listBuilder->getColumnTitles()->get('title'));
     }
+
+    public function testName()
+    {
+        $this->listBuilder->setName('Articles');
+        $this->assertEquals('Articles', $this->listBuilder->render()['name']);
+    }
 }

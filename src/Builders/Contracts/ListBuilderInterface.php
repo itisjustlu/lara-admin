@@ -8,6 +8,16 @@ use LucasRuroken\Backoffice\Builders\ActionBuilder;
 interface ListBuilderInterface
 {
     /**
+     * @param string $name
+     */
+    public function setName($name);
+
+    /**
+     * @return string
+     */
+    public function getName();
+
+    /**
      * @param array $columns
      */
     public function buildColumns(array $columns);

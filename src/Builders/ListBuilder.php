@@ -8,6 +8,11 @@ use LucasRuroken\Backoffice\Builders\Contracts\ListBuilderInterface;
 class ListBuilder implements ListBuilderInterface
 {
     /**
+     * @type string
+     */
+    private $name;
+
+    /**
      * @type Collection
      */
     private $columns;
@@ -31,6 +36,28 @@ class ListBuilder implements ListBuilderInterface
      * @type Collection
      */
     private $information;
+
+    public function __construct()
+    {
+        $this->columns = new Collection();
+        $this->hiddenColumns = new Collection();
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
      * @param array $columns
@@ -126,8 +153,9 @@ class ListBuilder implements ListBuilderInterface
     public function render()
     {
         return [
-            'actions' => $this->actionBuilder,
-            'information' => $this->information,
+            'name' => $this->getName(),
+            'actions' => $this->getActionBuilder(),
+            'information' => $this->getInformation(),
             'columns' => $this->visibleColumns(),
             'fullColumns' => $this->getColumns(),
             'titles' => $this->getColumnTitles(),
