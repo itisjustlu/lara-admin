@@ -7,10 +7,17 @@ use PHPUnit\Framework\TestCase;
 
 class ActionTest extends TestCase
 {
+    /** @type ActionBuilder */
+    private $actionBuilder;
+
+    public function setUp()
+    {
+        $this->actionBuilder = new ActionBuilder();
+    }
+
     public function test_ifNewActionsAreStored()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder
+        $this->actionBuilder
             ->build()
             ->setLink('/mi-link')
             ->setClass('custom-class')
@@ -21,7 +28,7 @@ class ActionTest extends TestCase
             ->asForm('PATCH');
 
 
-        $actionBuilder
+        $this->actionBuilder
             ->build()
             ->setLink('/mi-link-2')
             ->setClass('custom-class-2')
@@ -33,8 +40,8 @@ class ActionTest extends TestCase
             ->add('title', 'Extend Title')
             ->asLink();
 
-        $actionFirst = $actionBuilder->getActions()->first();
-        $actionLast = $actionBuilder->getActions()->last();
+        $actionFirst = $this->actionBuilder->getActions()->first();
+        $actionLast = $this->actionBuilder->getActions()->last();
 
         $this->assertEquals('/mi-link', $actionFirst->getLink());
         $this->assertEquals('custom-class', $actionFirst->getClass());
@@ -58,64 +65,58 @@ class ActionTest extends TestCase
 
     public function test_callableLinkInFalse()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink(function(){
 
                 return false;
             });
 
-        $this->assertFalse($actionBuilder->getActions()->first()->isEnabled());
+        $this->assertFalse($this->actionBuilder->getActions()->first()->isEnabled());
     }
 
     public function test_callableLinkInTrue()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink(function(){
 
                 return true;
             });
 
-        $this->assertTrue($actionBuilder->getActions()->first()->isEnabled());
+        $this->assertTrue($this->actionBuilder->getActions()->first()->isEnabled());
     }
 
     public function test_callableLinkString()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink(function(){
 
                 return '/mi-link';
             });
 
-        $this->assertEquals('/mi-link', $actionBuilder->getActions()->first()->getLink());
+        $this->assertEquals('/mi-link', $this->actionBuilder->getActions()->first()->getLink());
     }
 
     public function test_ifGetClassReturnsNull()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build();
+        $this->actionBuilder->build();
 
-        $this->assertNull($actionBuilder->getActions()->first()->getClass());
-        $this->assertTrue($actionBuilder->getActions()->first()->getClass() ? false : true);
+        $this->assertNull($this->actionBuilder->getActions()->first()->getClass());
+        $this->assertTrue($this->actionBuilder->getActions()->first()->getClass() ? false : true);
     }
 
     public function test_outputSimpleLink()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink('/my-profile')
             ->setLabeled('Texter');
 
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_simple_link_returned.html'));
-        print($actionBuilder->getActions()->first());
+        print($this->actionBuilder->getActions()->first());
     }
 
     public function test_outputAdvancedLink()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink('/my-profile')
             ->setClass('custom-class-2')
             ->setDataPlacement('bottom')
@@ -127,13 +128,12 @@ class ActionTest extends TestCase
             ->asLink();
 
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_link_returned.html'));
-        print($actionBuilder->getActions()->first());
+        print($this->actionBuilder->getActions()->first());
     }
 
     public function test_outputAdvancedForm()
     {
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
+        $this->actionBuilder->build()
             ->setLink('/my-profile')
             ->setClass('custom-class-2')
             ->setDataPlacement('bottom')
@@ -146,6 +146,6 @@ class ActionTest extends TestCase
             ->asForm();
 
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_form_returned.html'));
-        print($actionBuilder->getActions()->first());
+        print($this->actionBuilder->getActions()->first());
     }
 }
