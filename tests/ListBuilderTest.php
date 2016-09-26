@@ -61,10 +61,10 @@ class ListBuilderTest extends TestCase
         $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
         $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
 
-        $this->listBuilder->buildColumnTitles(['name' => 'Nombre', 'title' => 'Titulo']);
+        $this->listBuilder->buildColumnTitles(['name' => 'A name', 'title' => 'A title']);
 
-        $this->assertEquals('Nombre', $this->listBuilder->getColumnTitles()->get('name'));
-        $this->assertEquals('Titulo', $this->listBuilder->getColumnTitles()->get('title'));
+        $this->assertEquals('A name', $this->listBuilder->getColumnTitles()->get('name'));
+        $this->assertEquals('A title', $this->listBuilder->getColumnTitles()->get('title'));
     }
 
     public function test_nameIsReturned()
