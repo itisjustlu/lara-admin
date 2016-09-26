@@ -12,7 +12,7 @@
     @foreach($information AS $row)
         <tr>
             @foreach($columns AS $column)
-                <td>{{ $bulker->get($column, $row) }}</td>
+                <td>{{ $bulker->bulk($column, $row, $row->get($column)) }}</td>
             @endforeach
 
             @if($actions)

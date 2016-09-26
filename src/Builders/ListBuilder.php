@@ -175,7 +175,7 @@ class ListBuilder implements ListBuilderInterface
     {
         return [
             'actions' => $this->getActionBuilder(),
-            'bulker' => $this->getBulkers(),
+            'bulker' => $this->getBulkers() ?: new ColumnBulker(),
             'columns' => $this->visibleColumns(),
             'fullColumns' => $this->getColumns(),
             'information' => $this->getInformation(),

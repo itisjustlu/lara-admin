@@ -29,11 +29,12 @@ class ColumnBulker implements ColumnBulkerInterface
     /**
      * @param string $columnName
      * @param Collection $row
+     * @param string $default
      * @return string
      */
-    public function bulk($columnName, Collection $row)
+    public function bulk($columnName, Collection $row, $default)
     {
-        $call = $this->bulkedColumns->get($columnName, $columnName);
+        $call = $this->bulkedColumns->get($columnName, $default);
 
         if(is_callable($call))
         {

@@ -15,7 +15,8 @@ interface ColumnBulkerInterface
     /**
      * @param string $columnName
      * @param Collection $row
+     * @param string $default
      * @return string
      */
-    public function bulk($columnName, Collection $row);
+    public function bulk($columnName, Collection $row, $default);
 }
