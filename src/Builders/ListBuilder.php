@@ -18,6 +18,11 @@ class ListBuilder implements ListBuilderInterface
     private $hiddenColumns;
 
     /**
+     * @type Collection
+     */
+    private $columnTitles;
+
+    /**
      * @type ActionBuilder
      */
     private $actionBuilder;
@@ -68,6 +73,22 @@ class ListBuilder implements ListBuilderInterface
     }
 
     /**
+     * @param array $columns
+     */
+    public function buildColumnTitles(array $columns)
+    {
+        $this->columnTitles = new Collection($columns);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getColumnTitles()
+    {
+        return $this->columnTitles;
+    }
+
+    /**
      * @param ActionBuilder $actionBuilder
      */
     public function setActionBuilder(ActionBuilder $actionBuilder)
@@ -97,6 +118,20 @@ class ListBuilder implements ListBuilderInterface
     public function getInformation()
     {
         return $this->information;
+    }
+
+    /**
+     * @return array
+     */
+    public function render()
+    {
+        return [
+            'actions' => $this->actionBuilder,
+            'information' => $this->information,
+            'columns' => $this->visibleColumns(),
+            'fullColumns' => $this->getColumns(),
+            'titles' => $this->getColumnTitles(),
+        ];
     }
 
     /**

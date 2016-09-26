@@ -4,6 +4,6 @@ namespace LucasRuroken\Backoffice\Constants;
 
 class ViewConstants
 {
-    const BACKOFFICE_INDEX = 'backoffice_index';
-
+    const BACKOFFICE = 'backoffice';
+    const BACKOFFICE_LIST = 'backoffice::lists';
 }

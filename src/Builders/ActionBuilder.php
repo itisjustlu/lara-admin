@@ -13,11 +13,17 @@ class ActionBuilder implements ActionBuilderInterface
     private $actions;
 
     /**
+     * @type Collection
+     */
+    private $model;
+
+    /**
      * ActionBuilder constructor.
      */
     public function __construct()
     {
         $this->actions = new Collection();
+        $this->model = new Collection();
     }
 
     /**
@@ -40,6 +46,17 @@ class ActionBuilder implements ActionBuilderInterface
     }
 
     /**
+     * @param Collection $model
+     * @return string
+     */
+    public function render(Collection $model)
+    {
+        $this->model = $model;
+
+        return $this->__toString();
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -48,7 +65,7 @@ class ActionBuilder implements ActionBuilderInterface
 
         foreach($this->actions AS $action)
         {
-            $toString .= $action;
+            $toString .= $action->render($this->model);
         }
 
         return $toString;

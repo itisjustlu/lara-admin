@@ -33,6 +33,16 @@ interface ListBuilderInterface
     public function visibleColumns();
 
     /**
+     * @param array $columns
+     */
+    public function buildColumnTitles(array $columns);
+
+    /**
+     * @return Collection
+     */
+    public function getColumnTitles();
+
+    /**
      * @param ActionBuilder $actionBuilder
      */
     public function setActionBuilder(ActionBuilder $actionBuilder);
@@ -51,6 +61,11 @@ interface ListBuilderInterface
      * @return Collection
      */
     public function getInformation();
+
+    /**
+     * @return array
+     */
+    public function render();
 
     /**
      * @return string

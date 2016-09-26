@@ -67,7 +67,7 @@ class ActionBuilderTest extends TestCase
             {
                 return false;
             })
-            ->setClass('custom-class-2');
+            ->setClass('custom-class-3');
 
         $this->expectOutputString(file_get_contents(__DIR__ . '/html/test_link_returned.html'));
         print($actionBuilder);

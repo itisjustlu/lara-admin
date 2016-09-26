@@ -54,4 +54,15 @@ class ListBuilderTest extends TestCase
         $this->assertEquals('Dummy Name Y', $this->listBuilder->getInformation()->last()['name']);
         $this->assertEquals('Dummy Title Y', $this->listBuilder->getInformation()->last()['title']);
     }
+
+    public function testFilledColumnTitles()
+    {
+        $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
+        $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
+
+        $this->listBuilder->buildColumnTitles(['name' => 'Nombre', 'title' => 'Titulo']);
+
+        $this->assertEquals('Nombre', $this->listBuilder->getColumnTitles()->get('name'));
+        $this->assertEquals('Titulo', $this->listBuilder->getColumnTitles()->get('title'));
+    }
 }

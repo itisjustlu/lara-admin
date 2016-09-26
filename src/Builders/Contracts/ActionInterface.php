@@ -139,6 +139,12 @@ interface ActionInterface
     public function getExtras();
 
     /**
+     * @param Collection $model
+     * @return string
+     */
+    public function render(Collection $model);
+
+    /**
      * @return string
      */
     public function __toString();

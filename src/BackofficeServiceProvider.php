@@ -14,7 +14,7 @@ class BackofficeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/Views/', ViewConstants::BACKOFFICE_INDEX);
+        $this->loadViewsFrom(__DIR__ . '/Views', ViewConstants::BACKOFFICE);
     }
 
     /**

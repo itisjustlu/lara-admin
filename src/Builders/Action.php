@@ -15,6 +15,11 @@ class Action implements ActionInterface
     private $enabled;
 
     /**
+     * @type array
+     */
+    private $model;
+
+    /**
      * @type void|string
      */
     private $link;
@@ -75,6 +80,7 @@ class Action implements ActionInterface
         $this->asLink = true;
         $this->asForm = false;
         $this->extras = new Collection();
+        $this->model = new Collection();
     }
 
     /**
@@ -82,6 +88,9 @@ class Action implements ActionInterface
      */
     public function isEnabled()
     {
+        // Check if getLink function is properly working
+        $this->getLink();
+
         return $this->enabled;
     }
 
@@ -110,7 +119,21 @@ class Action implements ActionInterface
      */
     public function getLink()
     {
-        return $this->link;
+        if(is_callable($this->link))
+        {
+            $callable = call_user_func($this->link, $this->model);
+
+            if( ! $callable)
+            {
+                $this->disable();
+            }
+
+            return $callable;
+        }
+        else
+        {
+            return $this->link;
+        }
     }
 
     /**
@@ -119,19 +142,7 @@ class Action implements ActionInterface
      */
     public function setLink($link)
     {
-        if(is_callable($link))
-        {
-            if( ! call_user_func($link))
-            {
-                $this->disable();
-            }
-
-            $this->link = call_user_func($link);
-        }
-        else
-        {
-            $this->link = $link;
-        }
+        $this->link = $link;
 
         return $this;
     }
@@ -330,10 +341,22 @@ class Action implements ActionInterface
     }
 
     /**
+     * @param Collection $model
+     * @return string
+     */
+    public function render(Collection $model)
+    {
+        $this->model = $model;
+        return $this->__toString();
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
+        $link = $this->getLink();
+
         if(!$this->isEnabled())
         {
             return self::EMPTY_STRING;
@@ -341,13 +364,13 @@ class Action implements ActionInterface
 
         if($this->isLink())
         {
-            $toString = '<a href="' . $this->getLink() . '" '. $this->buildAttributes() . '>';
+            $toString = '<a href="' . $link . '" '. $this->buildAttributes() . '>';
             $toString .= $this->getLabeled();
             $toString .= '</a>';
         }
         else
         {
-            $toString = '<form action="' . $this->getLink() . '" method="' . $this->getMethod() . '">';
+            $toString = '<form action="' . $link . '" method="' . $this->getMethod() . '">';
 
             if($this->getCsrfField())
             {
