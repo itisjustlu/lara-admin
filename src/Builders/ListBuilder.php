@@ -92,6 +92,14 @@ class ListBuilder implements ListBuilderInterface
     }
 
     /**
+     * @return Collection
+     */
+    public function getInformation()
+    {
+        return $this->information;
+    }
+
+    /**
      * @return string
      */
     public function __toString()

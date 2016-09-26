@@ -38,4 +38,19 @@ class ListBuilderTest extends TestCase
             (array_values($this->listBuilder->visibleColumns()->toArray())) /** Use array_values to re order the array key */
         );
     }
+
+    public function testFillInformation()
+    {
+        $dataX = new Collection(['name' => 'Dummy Name X', 'title' => 'Dummy Title X']);
+        $dataY = new Collection(['name' => 'Dummy Name Y', 'title' => 'Dummy Title Y']);
+
+        $info = new Collection([$dataX, $dataY]);
+
+        $this->listBuilder->fillInformation($info);
+
+        $this->assertEquals('Dummy Name X', $this->listBuilder->getInformation()->first()['name']);
+        $this->assertEquals('Dummy Title X', $this->listBuilder->getInformation()->first()['title']);
+        $this->assertEquals('Dummy Name Y', $this->listBuilder->getInformation()->last()['name']);
+        $this->assertEquals('Dummy Title Y', $this->listBuilder->getInformation()->last()['title']);
+    }
 }

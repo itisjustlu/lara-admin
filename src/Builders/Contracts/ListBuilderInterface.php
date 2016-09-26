@@ -48,6 +48,11 @@ interface ListBuilderInterface
     public function fillInformation(Collection $information);
 
     /**
+     * @return Collection
+     */
+    public function getInformation();
+
+    /**
      * @return string
      */
     public function __toString();
