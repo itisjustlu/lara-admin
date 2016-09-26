@@ -1,8 +1,8 @@
 <?php
 
-namespace LucasRuroken\Backoffice\Tests;
+namespace LucasRuroken\LaraAdmin\Tests;
 
-use LucasRuroken\Backoffice\Builders\ActionBuilder;
+use LucasRuroken\LaraAdmin\Builders\ActionBuilder;
 use PHPUnit\Framework\TestCase;
 
 class ActionTest extends TestCase

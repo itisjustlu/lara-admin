@@ -1,9 +1,9 @@
 <?php
 
-namespace LucasRuroken\Backoffice\Builders\Contracts;
+namespace LucasRuroken\LaraAdmin\Builders\Contracts;
 
 use Illuminate\Support\Collection;
-use LucasRuroken\Backoffice\Builders\ColumnBulker;
+use LucasRuroken\LaraAdmin\Builders\ColumnBulker;
 
 interface ColumnBulkerInterface
 {

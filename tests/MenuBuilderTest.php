@@ -1,9 +1,9 @@
 <?php
 
-namespace LucasRuroken\Backoffice\Tests;
+namespace LucasRuroken\LaraAdmin\Tests;
 
-use LucasRuroken\Backoffice\Builders\Button;
-use LucasRuroken\Backoffice\Builders\MenuBuilder;
+use LucasRuroken\LaraAdmin\Builders\Button;
+use LucasRuroken\LaraAdmin\Builders\MenuBuilder;
 use PHPUnit\Framework\TestCase;
 
 class MenuBuilderTest extends TestCase

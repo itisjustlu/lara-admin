@@ -1,9 +1,9 @@
 <?php
 
-namespace LucasRuroken\Backoffice\Tests;
+namespace LucasRuroken\LaraAdmin\Tests;
 
 use Illuminate\Support\Collection;
-use LucasRuroken\Backoffice\Builders\ColumnBulker;
+use LucasRuroken\LaraAdmin\Builders\ColumnBulker;
 use PHPUnit\Framework\TestCase;
 
 class ColumnBulkerTest extends TestCase

@@ -1,10 +1,10 @@
 <?php
 
-namespace LucasRuroken\Backoffice;
+namespace LucasRuroken\LaraAdmin;
 
 use Illuminate\Support\ServiceProvider;
 
-class BackofficeServiceProvider extends ServiceProvider
+class LaraAdminServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -13,7 +13,7 @@ class BackofficeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/Views', 'backoffice');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'admin');
     }
 
     /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace LucasRuroken\Backoffice\Builders;
+namespace LucasRuroken\LaraAdmin\Builders;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use LucasRuroken\Backoffice\Builders\Contracts\ActionInterface;
+use LucasRuroken\LaraAdmin\Builders\Contracts\ActionInterface;
 
 class Action implements ActionInterface
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace LucasRuroken\Backoffice\Tests;
+namespace LucasRuroken\LaraAdmin\Tests;
 
 use Illuminate\Support\Collection;
-use LucasRuroken\Backoffice\Builders\Action;
-use LucasRuroken\Backoffice\Builders\ActionBuilder;
+use LucasRuroken\LaraAdmin\Builders\Action;
+use LucasRuroken\LaraAdmin\Builders\ActionBuilder;
 use PHPUnit\Framework\TestCase;
 
 class ActionBuilderTest extends TestCase

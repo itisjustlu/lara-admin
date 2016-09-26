@@ -1,5 +1,5 @@
 {
-  "name": "lucasruroken/backoffice",
+  "name": "lucasruroken/lara-admin",
   "description": "Backoffice admin for Laravel 5.*",
   "authors": [
     {
@@ -9,12 +9,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "LucasRuroken\\Backoffice\\": "src/"
+      "LucasRuroken\\LaraAdmin\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "LucasRuroken\\Backoffice\\Tests\\": "tests/"
+      "LucasRuroken\\LaraAdmin\\Tests\\": "tests/"
     }
   },
   "require": {

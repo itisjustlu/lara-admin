@@ -1,12 +1,12 @@
 <?php
 
-namespace Tests;
+namespace LucasRuroken\LaraAdmin\Tests;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
-use LucasRuroken\Backoffice\Builders\ActionBuilder;
-use LucasRuroken\Backoffice\Builders\ColumnBulker;
-use LucasRuroken\Backoffice\Builders\ListBuilder;
+use LucasRuroken\LaraAdmin\Builders\ActionBuilder;
+use LucasRuroken\LaraAdmin\Builders\ColumnBulker;
+use LucasRuroken\LaraAdmin\Builders\ListBuilder;
 use PHPUnit\Framework\TestCase;
 
 class ListBuilderTest extends TestCase
