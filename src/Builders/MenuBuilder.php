@@ -27,4 +27,12 @@ class MenuBuilder implements MenuBuilderInterface
 
         return $button;
     }
+
+    /**
+     * @return Collection
+     */
+    public function getButtons()
+    {
+        return $this->buttons;
+    }
 }

@@ -107,4 +107,12 @@ class Button implements ButtonInterface
     {
         return $this->buttons;
     }
+
+    /**
+     * @return bool
+     */
+    public function hasButtons()
+    {
+        return !$this->getButtons()->isEmpty();
+    }
 }

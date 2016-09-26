@@ -50,4 +50,9 @@ interface ButtonInterface
      * @return Collection
      */
     public function getButtons();
+
+    /**
+     * @return bool
+     */
+    public function hasButtons();
 }
