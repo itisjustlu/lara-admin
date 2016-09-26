@@ -45,7 +45,6 @@ class ListBuilder implements ListBuilderInterface
     public function __construct()
     {
         $this->columns = new Collection();
-        $this->hiddenColumns = new Collection();
     }
 
     /**
@@ -101,7 +100,7 @@ class ListBuilder implements ListBuilderInterface
      */
     public function visibleColumns()
     {
-        return $this->columns->diff($this->hiddenColumns);
+        return $this->columns->diff($this->hiddenColumns ?: new Collection());
     }
 
     /**
@@ -177,7 +176,6 @@ class ListBuilder implements ListBuilderInterface
             'actions' => $this->getActionBuilder(),
             'bulker' => $this->getBulkers() ?: new ColumnBulker(),
             'columns' => $this->visibleColumns(),
-            'fullColumns' => $this->getColumns(),
             'information' => $this->getInformation(),
             'name' => $this->getName(),
             'titles' => $this->getColumnTitles(),
