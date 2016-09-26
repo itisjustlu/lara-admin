@@ -7,6 +7,8 @@ use LucasRuroken\Backoffice\Builders\Contracts\ActionInterface;
 
 class Action implements ActionInterface
 {
+    const EMPTY_STRING = '';
+
     /**
      * @type bool
      */
@@ -119,12 +121,12 @@ class Action implements ActionInterface
     {
         if(is_callable($link))
         {
-            if(!$link())
+            if( ! call_user_func($link))
             {
                 $this->disable();
             }
 
-            $this->link = $link();
+            $this->link = call_user_func($link);
         }
         else
         {
@@ -334,9 +336,43 @@ class Action implements ActionInterface
     {
         if(!$this->isEnabled())
         {
-            return '';
+            return self::EMPTY_STRING;
         }
 
+        if($this->isLink())
+        {
+            $toString = '<a href="' . $this->getLink() . '" '. $this->buildAttributes() . '>';
+            $toString .= $this->getLabeled();
+            $toString .= '</a>';
+        }
+        else
+        {
+            $toString = '<form action="' . $this->getLink() . '" method="' . $this->getMethod() . '">';
+
+            if($this->getCsrfField())
+            {
+                $toString .= $this->getCsrfField();
+            }
+
+            // If csrfField is not given, It will search
+            // in the helpers library if the csrf_field function exists
+            if(!$this->getCsrfField() && function_exists('csrf_field'))
+            {
+                $toString .= csrf_field();
+            }
+
+            $toString .= '<button type="submit" '. $this->buildAttributes() . '>' . $this->getLabeled() . '</button>';
+            $toString .= '</form>';
+        }
+
+        return $toString;
+    }
+
+    /**
+     * @return string $attributes
+     */
+    private function buildAttributes()
+    {
         $attributes = [];
 
         if($this->getClass())
@@ -364,32 +400,6 @@ class Action implements ActionInterface
             $attributes[] = $key . '="' . $value . '"';
         }
 
-        if($this->isLink())
-        {
-            $toString = '<a href="' . $this->getLink() . '" '. implode(' ', $attributes) . '>';
-            $toString .= $this->getLabeled();
-            $toString .= '</a>';
-        }
-        else
-        {
-            $toString = '<form action="' . $this->getLink() . '" method="' . $this->getMethod() . '">';
-
-            if($this->getCsrfField())
-            {
-                $toString .= $this->getCsrfField();
-            }
-
-            // If csrfField is not given, It will search
-            // in the helpers library if the csrf_field function exists
-            if(!$this->getCsrfField() && function_exists('csrf_field'))
-            {
-                $toString .= csrf_field();
-            }
-
-            $toString .= '<button type="submit" '. implode(' ', $attributes) . '>' . $this->getLabeled() . '</button>';
-            $toString .= '</form>';
-        }
-
-        return $toString;
+        return implode(' ', $attributes);
     }
 }
