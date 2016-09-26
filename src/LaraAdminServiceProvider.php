@@ -13,7 +13,8 @@ class LaraAdminServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/Views', 'admin');
+        $this->registerViews();
+        $this->registerConfig();
     }
 
     /**
@@ -25,4 +26,17 @@ class LaraAdminServiceProvider extends ServiceProvider
     {
         //
     }
+
+    private function registerViews()
+    {
+        $this->loadViewsFrom(__DIR__ . '/Views', 'admin');
+    }
+
+    private function registerConfig()
+    {
+        $this->publishes([
+            __DIR__.'/Config/admin.php' => config_path('admin.php'),
+        ], 'lara-admin');
+    }
+
 }
