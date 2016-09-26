@@ -54,27 +54,4 @@ class ListBuilderTest extends TestCase
         $this->assertEquals('Dummy Name Y', $this->listBuilder->getInformation()->last()['name']);
         $this->assertEquals('Dummy Title Y', $this->listBuilder->getInformation()->last()['title']);
     }
-
-    public function testListBuilderToString()
-    {
-        $dataX = new Collection(['id' => 1, 'name' => 'Dummy Name X', 'title' => 'Dummy Title X']);
-        $dataY = new Collection(['id' => 2, 'name' => 'Dummy Name Y', 'title' => 'Dummy Title Y']);
-
-        $info = new Collection([$dataX, $dataY]);
-
-        $this->listBuilder->fillInformation($info);
-
-        $actionBuilder = new ActionBuilder();
-        $actionBuilder->build()
-            ->setLabeled('Delete')
-            ->setClass('id-delete')
-            ->setTitle('Delete');
-
-        $this->listBuilder->setActionBuilder($actionBuilder);
-
-        $this->listBuilder->buildColumns(['id', 'name']);
-        $this->listBuilder->hideColumns(['id']);
-
-        $this->expectOutputString(View::make());
-    }
 }
