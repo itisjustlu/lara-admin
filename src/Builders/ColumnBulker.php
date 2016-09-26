@@ -20,10 +20,12 @@ class ColumnBulker implements ColumnBulkerInterface
     /**
      * @param string $columnName
      * @param void|string $callback
+     * @return ColumnBulker
      */
     public function set($columnName, $callback)
     {
         $this->bulkedColumns->put($columnName, $callback);
+        return $this;
     }
 
     /**
