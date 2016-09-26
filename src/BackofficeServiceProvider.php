@@ -3,7 +3,6 @@
 namespace LucasRuroken\Backoffice;
 
 use Illuminate\Support\ServiceProvider;
-use LucasRuroken\Backoffice\Constants\ViewConstants;
 
 class BackofficeServiceProvider extends ServiceProvider
 {
@@ -14,7 +13,7 @@ class BackofficeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/Views', ViewConstants::BACKOFFICE);
+        $this->loadViewsFrom(__DIR__ . '/Views', 'backoffice');
     }
 
     /**
