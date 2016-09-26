@@ -17,7 +17,7 @@ class ActionBuilderTest extends TestCase
         $this->actionBuilder = new ActionBuilder();
     }
 
-    public function testBuildedActions()
+    public function test_outputBuildedActions()
     {
         $this->actionBuilder->build()
             ->setLink('/my-profile')
@@ -46,7 +46,7 @@ class ActionBuilderTest extends TestCase
         print($this->actionBuilder);
     }
 
-    public function testActionWithFalseLink()
+    public function test_outputWithFalseAction()
     {
         $this->actionBuilder->build()
             ->setLink('/my-profile')
