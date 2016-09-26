@@ -2,6 +2,7 @@
 
 namespace LucasRuroken\LaraAdmin\Builders;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use LucasRuroken\LaraAdmin\Builders\Contracts\ActionInterface;
@@ -304,13 +305,19 @@ class Action implements ActionInterface
      */
     public function add($key, $value)
     {
-        if($key == 'class')
+        $camel = Str::camel($key);
+        if(in_array($camel, $this->reflection))
         {
-            $this->setClass($this->getClass() . ' '. $value);
-        }
-        else if($key == 'title')
-        {
-            $this->setTitle($this->getTitle() . ' '. $value);
+            //We assume that the builder is adding a field with "-"
+            //Example: Builder: 'data-tooltip', => Camel: 'dataTooltip' => UcFirst & adding get: 'getDataTooltip'
+            $field = Str::ucfirst($camel);
+            $callable = 'get' . $field;
+            $setter = 'set' . $field;
+
+            if(method_exists(self::class, $callable) && $this->{$callable}())
+            {
+                $this->{$setter}($this->{$callable}() . ' ' . $value);
+            }
         }
         else
         {
@@ -407,7 +414,7 @@ class Action implements ActionInterface
 
         foreach($this->reflection AS $attr)
         {
-            $callable = 'get' . ucfirst($attr);
+            $callable = 'get' . Str::ucfirst($attr);
 
             if(method_exists(self::class, $callable) && $this->{$callable}())
             {
