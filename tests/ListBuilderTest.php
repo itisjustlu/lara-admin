@@ -5,6 +5,7 @@ namespace Tests;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
 use LucasRuroken\Backoffice\Builders\ActionBuilder;
+use LucasRuroken\Backoffice\Builders\ColumnBulker;
 use LucasRuroken\Backoffice\Builders\ListBuilder;
 use PHPUnit\Framework\TestCase;
 
@@ -77,11 +78,14 @@ class ListBuilderTest extends TestCase
         $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
         $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
 
-        $this->listBuilder->bulkColumn('name', function(Collection $row){
+        $bulker = new ColumnBulker();
+        $bulker->set('name', function(Collection $row){
 
-            return '<span style="color: red;">Test name</span>';
+            return '<span style="color: red;">Test name - ' . $row['name'] . '</span>';
         });
 
+        $this->listBuilder->fillBulkers($bulker);
 
+        $this->assertEquals('<span style="color: red;">Test name - Lucas</span>', $this->listBuilder->render()['bulker']->bulk('name', new Collection(['name' => 'Lucas'])));
     }
 }

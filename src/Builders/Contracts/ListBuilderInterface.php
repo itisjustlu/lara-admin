@@ -4,6 +4,7 @@ namespace LucasRuroken\Backoffice\Builders\Contracts;
 
 use Illuminate\Support\Collection;
 use LucasRuroken\Backoffice\Builders\ActionBuilder;
+use LucasRuroken\Backoffice\Builders\ColumnBulker;
 
 interface ListBuilderInterface
 {
@@ -71,6 +72,16 @@ interface ListBuilderInterface
      * @return Collection
      */
     public function getInformation();
+
+    /**
+     * @param ColumnBulker $columnBulkers
+     */
+    public function fillBulkers(ColumnBulker $columnBulkers);
+
+    /**
+     * @return ColumnBulker
+     */
+    public function getBulkers();
 
     /**
      * @return array

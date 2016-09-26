@@ -5,7 +5,7 @@
                 <h3 class="box-title">{{ $name }}</h3>
             </div>
             <div class="box-body table-responsive no-padding">
-                @include('backoffice::lists.table', ['columns' => $columns, 'actions' => $actions, 'information' => $information, 'bulkedColumns' => $bulkedColumns])
+                @include('backoffice::lists.table', ['columns' => $columns, 'actions' => $actions, 'information' => $information, 'bulker' => $bulker])
             </div>
         </div>
     </div>
