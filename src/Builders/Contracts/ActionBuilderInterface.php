@@ -2,7 +2,6 @@
 
 namespace LucasRuroken\Backoffice\Builders\Contracts;
 
-
 use Illuminate\Support\Collection;
 use LucasRuroken\Backoffice\Builders\Action;
 
