@@ -23,14 +23,14 @@ class ListBuilderTest extends TestCase
         $this->listBuilder = new ListBuilder();
     }
 
-    public function testSetActionBuilder()
+    public function test_ifActionBuilderIsSetted()
     {
         $this->listBuilder->setActionBuilder($this->actionBuilder);
 
         $this->assertEquals($this->actionBuilder, $this->listBuilder->getActionBuilder());
     }
 
-    public function testVisibleColumns()
+    public function test_visibleColumns()
     {
         $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
         $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
@@ -41,7 +41,7 @@ class ListBuilderTest extends TestCase
         );
     }
 
-    public function testFillInformation()
+    public function test_fillInformation()
     {
         $dataX = new Collection(['name' => 'Dummy Name X', 'title' => 'Dummy Title X']);
         $dataY = new Collection(['name' => 'Dummy Name Y', 'title' => 'Dummy Title Y']);
@@ -56,7 +56,7 @@ class ListBuilderTest extends TestCase
         $this->assertEquals('Dummy Title Y', $this->listBuilder->getInformation()->last()['title']);
     }
 
-    public function testFilledColumnTitles()
+    public function test_filledColumnTitles()
     {
         $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
         $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
@@ -67,13 +67,13 @@ class ListBuilderTest extends TestCase
         $this->assertEquals('Titulo', $this->listBuilder->getColumnTitles()->get('title'));
     }
 
-    public function testNameIsRendered()
+    public function test_nameIsReturned()
     {
         $this->listBuilder->setName('Articles');
         $this->assertEquals('Articles', $this->listBuilder->render()['name']);
     }
 
-    public function testBulkedColumns()
+    public function test_bulkedColumns()
     {
         $this->listBuilder->buildColumns(['name', 'title', 'created_at', 'updated_at']);
         $this->listBuilder->hideColumns(['title', 'created_at', 'body']);
