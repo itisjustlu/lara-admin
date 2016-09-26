@@ -12,7 +12,6 @@ interface ActionInterface
      */
     public function isEnabled();
 
-
     /**
      * @return Action
      */
@@ -24,20 +23,15 @@ interface ActionInterface
     public function disable();
 
     /**
-     * @return mixed
-     */
-    public function getLink();
-
-    /**
      * @param string|void $link
      * @return Action
      */
     public function setLink($link);
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getLabeled();
+    public function getLink();
 
     /**
      * @param string $labeled
@@ -48,7 +42,7 @@ interface ActionInterface
     /**
      * @return string
      */
-    public function getClass();
+    public function getLabeled();
 
     /**
      * @param string $class
@@ -59,7 +53,7 @@ interface ActionInterface
     /**
      * @return string
      */
-    public function getDataToggle();
+    public function getClass();
 
     /**
      * @param string $dataToggle
@@ -70,7 +64,7 @@ interface ActionInterface
     /**
      * @return string
      */
-    public function getDataPlacement();
+    public function getDataToggle();
 
     /**
      * @param string $dataPlacement
@@ -81,13 +75,18 @@ interface ActionInterface
     /**
      * @return string
      */
-    public function getTitle();
+    public function getDataPlacement();
 
     /**
      * @param string $title
      * @return Action
      */
     public function setTitle($title);
+
+    /**
+     * @return string
+     */
+    public function getTitle();
 
     /**
      * @param string $method
@@ -123,15 +122,15 @@ interface ActionInterface
     public function add($key, $value);
 
     /**
-     * @return mixed
-     */
-    public function getCsrfField();
-
-    /**
      * @param mixed $csrfField
      * @return Action
      */
     public function setCsrfField($csrfField);
+
+    /**
+     * @return mixed
+     */
+    public function getCsrfField();
 
     /**
      * @return Collection

@@ -115,6 +115,17 @@ class Action implements ActionInterface
     }
 
     /**
+     * @param string|void $link
+     * @return Action
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    /**
      * @return mixed
      */
     public function getLink()
@@ -137,25 +148,6 @@ class Action implements ActionInterface
     }
 
     /**
-     * @param string|void $link
-     * @return Action
-     */
-    public function setLink($link)
-    {
-        $this->link = $link;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLabeled()
-    {
-        return $this->labeled;
-    }
-
-    /**
      * @param string $labeled
      * @return Action
      */
@@ -169,9 +161,9 @@ class Action implements ActionInterface
     /**
      * @return string
      */
-    public function getClass()
+    public function getLabeled()
     {
-        return $this->class;
+        return $this->labeled;
     }
 
     /**
@@ -188,9 +180,9 @@ class Action implements ActionInterface
     /**
      * @return string
      */
-    public function getDataToggle()
+    public function getClass()
     {
-        return $this->dataToggle;
+        return $this->class;
     }
 
     /**
@@ -207,9 +199,9 @@ class Action implements ActionInterface
     /**
      * @return string
      */
-    public function getDataPlacement()
+    public function getDataToggle()
     {
-        return $this->dataPlacement;
+        return $this->dataToggle;
     }
 
     /**
@@ -226,9 +218,9 @@ class Action implements ActionInterface
     /**
      * @return string
      */
-    public function getTitle()
+    public function getDataPlacement()
     {
-        return $this->title;
+        return $this->dataPlacement;
     }
 
     /**
@@ -240,6 +232,14 @@ class Action implements ActionInterface
         $this->title = $title;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**

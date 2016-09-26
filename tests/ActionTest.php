@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ActionTest extends TestCase
 {
-    public function testNewActions()
+    public function test_ifNewActionsAreStored()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder
@@ -56,7 +56,7 @@ class ActionTest extends TestCase
         $this->assertTrue($actionLast->isLink());
     }
 
-    public function testCallableLinkFalseReturn()
+    public function test_callableLinkInFalse()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -68,7 +68,7 @@ class ActionTest extends TestCase
         $this->assertFalse($actionBuilder->getActions()->first()->isEnabled());
     }
 
-    public function testCallableLinkTrueReturn()
+    public function test_callableLinkInTrue()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -80,7 +80,7 @@ class ActionTest extends TestCase
         $this->assertTrue($actionBuilder->getActions()->first()->isEnabled());
     }
 
-    public function testCallableLinkStringReturn()
+    public function test_callableLinkString()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -92,7 +92,7 @@ class ActionTest extends TestCase
         $this->assertEquals('/mi-link', $actionBuilder->getActions()->first()->getLink());
     }
 
-    public function testNullableGetClass()
+    public function test_ifGetClassReturnsNull()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build();
@@ -101,7 +101,7 @@ class ActionTest extends TestCase
         $this->assertTrue($actionBuilder->getActions()->first()->getClass() ? false : true);
     }
 
-    public function testOutputSimpleLink()
+    public function test_outputSimpleLink()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -112,7 +112,7 @@ class ActionTest extends TestCase
         print($actionBuilder->getActions()->first());
     }
 
-    public function testOutputLink()
+    public function test_outputAdvancedLink()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
@@ -130,7 +130,7 @@ class ActionTest extends TestCase
         print($actionBuilder->getActions()->first());
     }
 
-    public function testOutputForm()
+    public function test_outputAdvancedForm()
     {
         $actionBuilder = new ActionBuilder();
         $actionBuilder->build()
