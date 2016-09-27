@@ -29,7 +29,7 @@ class LaraAdminServiceProvider extends ServiceProvider
     private function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/Config/admin.php' => config_path('admin.php'),
+            __DIR__ . '/config/admin.php' => config_path('admin.php'),
         ], 'lara-admin');
     }
 }
