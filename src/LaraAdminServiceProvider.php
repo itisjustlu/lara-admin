@@ -7,17 +7,6 @@ use Illuminate\Support\ServiceProvider;
 class LaraAdminServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerViews();
-        $this->registerConfig();
-    }
-
-    /**
      * Register the application services.
      *
      * @return void
@@ -27,9 +16,14 @@ class LaraAdminServiceProvider extends ServiceProvider
         //
     }
 
-    private function registerViews()
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/Views', 'admin');
+        $this->registerConfig();
     }
 
     private function registerConfig()
