@@ -32,5 +32,4 @@ class LaraAdminServiceProvider extends ServiceProvider
             __DIR__.'/Config/admin.php' => config_path('admin.php'),
         ], 'lara-admin');
     }
-
 }
