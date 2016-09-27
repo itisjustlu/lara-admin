@@ -7,6 +7,4 @@ return [
      * You can set 'gentelella', 'adminlte'
      */
     'template' => 'gentelella',
-
-    'assets_path' => public_path('assets')
 ];
